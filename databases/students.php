@@ -25,7 +25,6 @@ function getStudentById(): array|bool
 function register_Student(String $fname, String $lname, String $img, String $bod, String $tel,String $email, String $pwd)
 {
     $conn = getConnection();
-    $newDate = date('Y-m-d', strtotime($bod));
     $hashpwd = password_hash($pwd, PASSWORD_DEFAULT);
 
     $sql = 'INSERT INTO students(first_name, last_name, image, date_of_birth, phone_number, email, password) 

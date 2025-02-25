@@ -12,6 +12,7 @@ function login(String $username, String $password): array|bool
     $stmt->bind_param("si", $username, $stdid);
     $stmt->execute();
     $result = $stmt->get_result();
+    
     if($result->num_rows == 0)
     {
         return false;

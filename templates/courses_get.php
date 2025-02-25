@@ -11,7 +11,6 @@ $courses = $data['courses'];
     <?php if(isset($_SESSION['success'])){?>
         <script>alert("<?=$_SESSION['success']?>");</script>
     <?php unset($_SESSION['success']); }?>
-    <!-- test -->
 
     <div class="ps-5 pe-5 text-white" style="width:70rem; height:40rem; border: 10px solid gray; border-radius: 15px;">
         <h2 class="fs-1 mt-4 text-center">รายวิชาที่เปิดให้ลงทะเบียน</h2>
