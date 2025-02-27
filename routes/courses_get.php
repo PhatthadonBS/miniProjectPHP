@@ -1,6 +1,6 @@
 <?php
-    if(isset($_GET["cid"])){
-        enrollCourse($_GET["cid"]);
+    if(isset($_GET["cid"]) && isset($_GET['cname'])){
+        enrollCourse($_GET["cid"], $_GET['cname']);
     }
 
     $result = getCourses();

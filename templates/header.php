@@ -38,14 +38,25 @@
         }
 
         function confirmWithdraw(event, element) {
-        if (confirm('ยืนยันการถอนรายวิชา')) {
-            removeHidden(); 
-            return true; 
-        } else {
-            event.preventDefault();
-            return false;
+            
+            if (confirm('ยืนยันการถอนรายวิชา')) {
+                removeHidden(); 
+                return true; 
+            } else {
+                event.preventDefault();
+                return false;
+            }
         }
-    }
+
+        function confirmEnroll(event, element){
+            if(confirm("ยืนยันการลงทะเบียน")){
+                addHidden();
+                return true;
+            }else{
+                event.preventDefault();
+                return false;
+            }
+        }
     </script>
 
 </head>

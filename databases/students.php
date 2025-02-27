@@ -3,7 +3,7 @@
 function getStudents(): mysqli_result|bool
 {
     $conn = getConnection();
-    $sql = 'select * from students orderby student_id desc';
+    $sql = 'select * from students';
     $result = $conn->query($sql);
     return $result;
 }

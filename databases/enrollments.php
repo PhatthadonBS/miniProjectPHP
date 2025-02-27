@@ -8,15 +8,12 @@ function getStudentEnrollmentByStudentId(): mysqli_result|bool
     c.course_name,
     c.course_code,
     c.instructor,
-    e.enrollment_id,
+    e.course_id,
     e.enrollment_date,
-    s.student_id
-    FROM
-    enrollment.courses c
-    INNER JOIN enrollment.enrollment e ON
-    c.course_id = e.course_id
-    INNER JOIN enrollment.students s ON
-    e.student_id = s.student_id where s.student_id = ?
+    e.student_id
+    from 	enrollment e, courses c
+    WHERE	e.course_id = c.course_id
+    AND		e.student_id = ?
     order by c.course_id';
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $_SESSION['student_id']);
@@ -26,18 +23,19 @@ function getStudentEnrollmentByStudentId(): mysqli_result|bool
 }
 
 
-function withdrawnCourse($course_id)
+function withdrawnCourse($course_id, $cname)
 {
     $conn = getConnection();
     $sql = 'DELETE FROM enrollment
-            WHERE   student_id =    ?
+            WHERE   student_id = ?
             AND     course_id  = ?';
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('ss', $_SESSION['student_id'], $course_id);
     $stmt->execute();
+    $_SESSION['success'] = 'ถอนการลงทะเบียนรายวิชา '.$cname.' สำเร็จ';
 }
 
-function enrollCourse($course_id)
+function enrollCourse($course_id, $cname)
 {
     $conn = getConnection();
     $sql = 'SELECT  count(course_id) as count
@@ -57,9 +55,9 @@ function enrollCourse($course_id)
         $stmt = $conn->prepare($sql);
         $stmt->bind_param('iis', $_SESSION['student_id'], $course_id, $nowDate);
         $stmt->execute(); 
-        $_SESSION['success'] = 'ลงทะเบียนสำเร็จ';
+        $_SESSION['success'] = 'ลงทะเบียนรายวิชา '.$cname.' สำเร็จ';
     }else{
-        $_SESSION['error'] = 'ไม่สามารถลงทะเบียนได้';
+        $_SESSION['error'] = 'ไม่สามารถลงทะเบียนรายวิชา '.$cname.' ได้';
     }
 }
 

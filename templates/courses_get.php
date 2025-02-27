@@ -31,7 +31,7 @@ $courses = $data['courses'];
                         <td><?= $course['course_code'] ?></td>
                         <td><?= $course['course_name'] ?></td>
                         <td><?= $course['instructor'] ?></td>
-                        <td><a href="/courses?cid=<?=$course['course_id']?>" class="btn <?=(isEnrolled($course['course_id']))?"hidden":""?>" style="border: 1px solid green;" id="regbtn" onclick="addHidden();">ลงทะเบียน</a></td>
+                        <td><a href="/courses?cid=<?=$course['course_id']?>&cname=<?=$course['course_name']?>" class="btn <?=(isEnrolled($course['course_id']))? 'hidden' : ''?>" style="border: 1px solid green;" id="regbtn" onclick="return confirmEnroll(event, this);">ลงทะเบียน</a></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

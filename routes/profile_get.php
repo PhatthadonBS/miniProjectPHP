@@ -1,7 +1,7 @@
 <?php
 
-    if(isset($_GET["cid"])){
-        withdrawnCourse($_GET['cid']);
+    if(isset($_GET["cid"]) && isset($_GET["cname"])){
+        withdrawnCourse($_GET['cid'], $_GET["cname"]);
     }
     $result = getStudentById();
     $enrollment = getStudentEnrollmentByStudentId();
